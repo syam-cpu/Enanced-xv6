@@ -1,0 +1,34 @@
+WAITX:
+I iterated through the process table and found out the any child of the calling process. I kept  the values of running time and waiting time in rtime and wtime pointers then  rest of the code is similar to wait. 
+
+FCFS:
+I iterated through the process table and stored the process creation time which is having least creation time [ctime] among runnable processes.  Then I iterate again through the process table and run the process which is having creation time equals to store value minimum creation time. I won’t yield this process.
+
+PBS:
+I iterated through the process table and stored the process priority number which is minimum [minpriority] among the runnable process. Now I iterate again through the process table and run the processes for one time slice which are having priority equal to minimum priority in “round robin fashion”.
+
+MLFQ:
+I created a two dimensional array where at array[i][j] I stored the  j+1 th process at i+1 th queue.
+Totalticks[5] stores number of ticks occurred during running at i th queue. 
+Ticks[5] stores the total slice consumed at i th queue.
+
+AGER FUNCTION:
+At the start of scheduling I iterate through every queue and check the process waiting time. If it exceeds the limit which I set,  I push it 1to the lower end of next high priority queue. I reset the process ticks[q]  and wtime equals to zero.
+
+CHECKING PROCESSES TIMESLICE CONSUMED VALUES:
+I iterate through every queue and I check the process ticks[q] value. If it exceeds max timeslice value at that queue I push it to the next low priority. I reset the process ticks[q] and wtime equals to zero.
+
+WHEN TO YIELD:
+After every clocktick I check the process ticks[q] value with maxtimeslicevalue at that queue. If it is greater than maxtimeslice then I call yield else I increase its ticks[q] value.
+
+
+Process can relinquish the same priority queue when i make make its ticks[q] value (which stores the timeslice consumed value) to zero when it went to sleep.
+
+ 
+PERFORMANCE COMPARISON:
+FCFS is better for processes where no context switches involve between processes. 
+MLFQ is more responsive and is some times more faster than FCFS and PBS.
+When processes are CPU bound then their performance is almost similar.
+
+
+ 
